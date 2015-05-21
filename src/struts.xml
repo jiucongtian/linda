@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.multipart.maxSize" value="55000000"/>
+	
+	<package name="default" extends="struts-default">
+	
+	
+		<action name="upload">
+			<result>/WEB-INF/filemanager/upload.jsp</result>
+		</action>
+		
+		<action name="submitUploadFile" 
+			class="com.linda.fileupdown.FileUploadManager">
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">55000000</param> 
+            </interceptor-ref>
+			<result name="success">/index.jsp</result>
+		</action>	
+	
+	
+	<!-- 
+		<interceptors>
+			<interceptor name="hello" class="com.accenture.interceptors.MyInterceptors"></interceptor>
+		</interceptors>
+		<action name="testUpload" 
+			class="com.accenture.app.UploadAction">
+			<result>/success.jsp</result>
+		</action>
+		<action name="testDownload" 
+			class="com.accenture.download.app.TestDownloadAction">
+			<interceptor-ref name="hello"></interceptor-ref>
+			
+			<result name="error">/failed.jsp</result>
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream;charset=ISO8859-1</param>
+				<param name="contentDisposition">attachment;filename=${downloadFileName}</param>
+				<param name="bufferSize">2048</param>
+			</result>
+		</action>
+	 -->
+	</package>
+
+
+</struts>
